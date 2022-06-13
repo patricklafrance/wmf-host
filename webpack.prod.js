@@ -13,7 +13,7 @@ module.exports = {
     minimize: true
   },
   output: {
-    // publicPath: `https://fabulous-narwhal-8586e0.netlify.app/`,
+    // publicPath: `https://weback-module-federation-poc-host.netlify.app/`,
     clean: true
   },
   module: {
@@ -44,7 +44,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "host",
       remotes: {
-        remote1: "remote1@http://localhost:8081/remoteEntry.js"
+        remote1: "remote1@https://webpack-module-federation-poc-remote-1.netlify.app/remoteEntry.js"
       },
       shared: {
         "react": {

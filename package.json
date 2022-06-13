@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "serve-build": "yarn serve dist"
+    "serve-build": "yarn http-server dist -p 8080"
   },
   "devDependencies": {
     "@babel/core": "^7.17.12",
@@ -14,7 +14,7 @@
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
-    "serve": "^13.0.2",
+    "http-server": "^14.1.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",

@@ -20,12 +20,13 @@
 ## Remaining concerns
 - Why do I have to specified the shared dependencies in host AND fragments? What happens if the deps version diverge between the host & the fragments?
 - WMF doesn't support fast-refresh?
+- For a react app when a remote is not available, the webpack devserver will wait for the network request to timeout before calling index.js
 
 ## Best practices
 
 - Always keep your shared dependencies on the same versions on host and fragments
 
-## Good to know
+## Gotchas
 
 To fix the following error:
 react_devtools_backend.js:4026 Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
