@@ -43,24 +43,29 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "host",
+      // USELESS SINCE DOING THE DYNAMIC LOAD OURSELF TO DISPLAY A LOADING WHILE LOADING THE FRAGMENTS
       remotes: {
         remote1: "remote1@http://localhost:8081/remoteEntry.js"
       },
       shared: {
         "react": {
           singleton: true,
+          eager: true,
           requiredVersion: deps["react"]
         },
         "react-dom": {
           singleton: true,
+          eager: true,
           requiredVersion: deps["react-dom"]
         },
         "react-router-dom": { 
           singleton: true,
+          eager: true,
           requiredVersion: deps["react-router-dom"]
         },
         "@sharegate/orbit-ui": {
           singleton: true,
+          eager: true,
           requiredVersion: deps["@sharegate/orbit-ui"]
         }
       }

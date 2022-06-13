@@ -21,6 +21,10 @@
 - Why do I have to specified the shared dependencies in host AND fragments? What happens if the deps version diverge between the host & the fragments?
 - WMF doesn't support fast-refresh?
 
+## Best practices
+
+- Always keep your shared dependencies on the same versions on host and fragments
+
 ## Good to know
 
 To fix the following error:

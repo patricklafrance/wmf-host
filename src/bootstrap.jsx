@@ -6,6 +6,14 @@ import { createRoot } from "react-dom/client";
 
 const root = createRoot(document.getElementById("root"));
 
+// console.log("**** Root element: ", root);
+
+function RootComponent() {
+    // console.log("**** Rendering Root component.")
+
+    return <App />;
+}
+
 root.render(
-    <App />
+    <RootComponent />
 );

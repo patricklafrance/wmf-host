@@ -7,48 +7,104 @@ import { getRoutes, getRoutesByLayout, registerRoute, renderRoutes } from "@core
 import { Loader } from "@components/Loader";
 import { NotFoundPage } from "@pages/NotFoundPage";
 import { Page2 } from "@pages/Page2";
-import { eventBus } from "@core/bus/eventBus";
+import { registerRemotes } from "@core/mfe/registerRemotes"
+
+// import { register } from "remote1/register";
 
 const RegistrationStatus = {
     inProgress: "InProgress",
-    completed: "Completed",
-    failed: "Failed"
+    completed: "Completed"
 };
 
 let registrationState = RegistrationStatus.inProgress;
 
-function registerFragment(fragment) {
-    if (!fragment.register) {
-        throw new Error(`Cannot find a register function for fragment ${x}`);
+registerRemotes({
+    onCompleted: () => {
+        registrationState = RegistrationStatus.completed;
     }
+});
 
-    fragment.register({
-        registerRoute,
-        registerNavigationItem,
-        eventBus
-    });
-}
+// allSettled
 
-function start() {
-    const fragmentPromises = [
-        import("remote1/register").then(x => {
-            registerFragment(x);
-        })
-    ];
+/////////////////////////////////////
 
-    Promise.all(fragmentPromises)
-        .then(() => {
-            registrationState = RegistrationStatus.completed;
-        })
-        .catch((error) => {
-            registrationState = RegistrationStatus.failed;
+// function loadDynamicScript(url) {
+//     return new Promise((resolve, reject) => {
+//         const element = document.createElement("script");
 
-            console.log("Fragments registration failed with the following error:");
-            console.log(error);
-        });
-}
+//         element.src = url;
+//         element.type = "text/javascript";
+//         element.async = true;
 
-start();
+//         element.onload = () => {
+//             element.parentElement.removeChild(element);
+//             resolve();
+//         };
+
+//         // TODO: se a setTimeout to eagerly reject, it's too long.
+//         element.onerror = (error) => {
+//             element.parentElement.removeChild(element);
+//             reject(error);
+//         };
+
+//         document.head.appendChild(element);
+//     });
+// }
+
+// // TODO: DO ALL IN SHIT IN PROMISE INSTEAD
+// async function loadRemoteFragment(url, scope, module) {
+//     try {
+//         await loadDynamicScript(url);
+
+//         return async () => {
+//             // Initializes the share scope. This fills it with known provided modules from this build and all remotes
+//             await __webpack_init_sharing__("default");
+    
+//             const container = window[scope]; 
+    
+//             // Initialize the container, it may provide shared modules.
+//             await container.init(__webpack_share_scopes__.default);
+    
+//             const factory = await window[scope].get(module);
+    
+//             const Module = factory();
+    
+//             return Module;
+//         };
+//     }
+//      catch (e) {
+//         return Promise.reject();
+//      }
+// }
+
+// // TODO: DO ALL IN SHIT IN PROMISE INSTEAD
+// async function start() {
+//     try {
+//         const module = await loadRemoteFragment("http://localhost:8081/remoteEntry.js", "remote1", "./register");
+
+//         module()
+//         .then(x => { 
+//             console.log("Resolved remote module: ", x);
+
+//             x.register({
+//                 registerRoute,
+//                 registerNavigationItem,
+//                 eventBus
+//             });
+
+//             registrationState = RegistrationStatus.completed;
+//         })
+//         .catch(x => { console.log("Remote module loading failed: ", x) });
+//     }
+//     catch (e) {
+//         console.log("loading failed");
+//         registrationState = RegistrationStatus.completed;
+//     }
+// }
+
+// start();
+
+/////////////////////////////////////
 
 const HomePage = lazy(() => import("@pages/HomePage"));
 const Page1 = lazy(() => import("@pages/Page1"));
@@ -66,7 +122,7 @@ createThemeVars([ShareGateTheme]);
 function useRerenderOnRegistrationCompletion() {
     const [_, completed] = useState(false);
 
-    // TEMP code to ensure a reload when the modules are registred.
+    // TEMP: perform a reload once the modules are registred.
     useEffect(() => {
         const intervalId = setInterval(() => {
             if (registrationState !== RegistrationStatus.inProgress) {
@@ -97,7 +153,7 @@ export function App() {
 
     if (registrationState === RegistrationStatus.failed) {
         return (
-            <div style="color: red;">Failed to register all fragments.</div>
+            <div style={{ color: "red" }}>Failed to register all fragments.</div>
         )
     }
 
