@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "serve-build": "yarn http-server dist -p 8080"
+    "serve-build": "yarn http-server dist -p 8080 -P http://localhost:8080?"
   },
   "devDependencies": {
     "@babel/core": "^7.17.12",

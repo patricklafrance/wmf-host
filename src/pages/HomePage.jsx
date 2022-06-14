@@ -1,5 +1,6 @@
-import { Card, Content, Div, H2, Heading, Paragraph } from "@sharegate/orbit-ui";
+import { Card, Content, Div, H2, Heading, Illustration, Image, Paragraph } from "@sharegate/orbit-ui";
 
+import { Planet } from "./assets";
 import React from "react";
 
 export default function HomePage() {
@@ -8,6 +9,9 @@ export default function HomePage() {
             <H2>Home</H2>
             <Div>
                 <Card>
+                    <Illustration backgroundColor="alias-accent-light">
+                        <Image src={Planet} alt="Planet over another one" width="100px" />
+                    </Illustration>
                     <Heading>NASA Headquarters</Heading>
                     <Content>
                         <Paragraph>

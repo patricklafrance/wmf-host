@@ -71,7 +71,7 @@ export function Layout() {
             ))}
           </UL>
         </Nav>
-        <Suspense fallback={<Loader message="Loading from Layout..." />}>
+        <Suspense fallback={<Loader message="Loading from layout..." />}>
           <Outlet />
         </Suspense>
       </Div>

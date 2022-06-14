@@ -8,6 +8,8 @@ const registrationContext = {
     eventBus
 };
 
+/* webpackPrefetch: 1 */
+
 export function registerRemotes({ onCompleted }) {
     import("remote1/register")
         .then(module => {

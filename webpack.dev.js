@@ -4,16 +4,14 @@ const path = require("path");
 
 const deps = require("./package.json").dependencies;
 
-const PORT = 8080;
-
 module.exports = {
   mode: "development",
   target: "web",
   output: {
-    publicPath: `http://localhost:${PORT}/`
+    publicPath: `http://localhost:8080/`
   },
   devServer: {
-    port: PORT,
+    port: 8080,
     historyApiFallback: true
   },
   module: {
@@ -28,6 +26,10 @@ module.exports = {
       {
         test: /\.(css)$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: "asset/resource"
       }
     ]
   },

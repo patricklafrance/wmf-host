@@ -7,9 +7,7 @@ import { getRoutes, getRoutesByLayout, registerRoute, renderRoutes } from "@core
 import { Loader } from "@components/Loader";
 import { NotFoundPage } from "@pages/NotFoundPage";
 import { Page2 } from "@pages/Page2";
-import { registerRemotes } from "@core/mfe/registerRemotes"
-
-// import { register } from "remote1/register";
+import { registerRemotes } from "@core/mfe/registerRemotes";
 
 const RegistrationStatus = {
     inProgress: "InProgress",
@@ -51,7 +49,7 @@ registerRemotes({
 //     });
 // }
 
-// // TODO: DO ALL IN SHIT IN PROMISE INSTEAD
+// // TODO: DO ALL THIS IN PROMISE INSTEAD
 // async function loadRemoteFragment(url, scope, module) {
 //     try {
 //         await loadDynamicScript(url);
@@ -77,7 +75,7 @@ registerRemotes({
 //      }
 // }
 
-// // TODO: DO ALL IN SHIT IN PROMISE INSTEAD
+// // TODO: DO ALL THIS IN PROMISE INSTEAD
 // async function start() {
 //     try {
 //         const module = await loadRemoteFragment("http://localhost:8081/remoteEntry.js", "remote1", "./register");
@@ -140,6 +138,21 @@ function useRerenderOnRegistrationCompletion() {
 }
 
 export function App() {
+    // const registrationStatus = useState(RegistrationStatus.inProgress);
+
+
+    // let registrationStatus = RegistrationStatus.inProgress;
+    
+    // useEffect(() => {
+
+    // }, []);
+    
+    // registerRemotes({
+    //     onCompleted: () => {
+    //         registrationState = RegistrationStatus.completed;
+    //     }
+    // });
+
     useRerenderOnRegistrationCompletion();
 
     console.log("registration state: ", registrationState);

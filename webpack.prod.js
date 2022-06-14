@@ -14,6 +14,7 @@ module.exports = {
   },
   output: {
     // publicPath: `https://weback-module-federation-poc-host.netlify.app/`,
+    // publicPath: `http://localhost:8080/`,
     clean: true
   },
   module: {
@@ -28,6 +29,10 @@ module.exports = {
       {
         test: /\.(css)$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: "asset/resource"
       }
     ]
   },
@@ -45,6 +50,7 @@ module.exports = {
       name: "host",
       remotes: {
         remote1: "remote1@https://webpack-module-federation-poc-remote-1.netlify.app/remoteEntry.js"
+        // remote1: "remote1@http://localhost:8081/remoteEntry.js"
       },
       shared: {
         "react": {
