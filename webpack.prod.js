@@ -13,8 +13,8 @@ module.exports = {
     minimize: true
   },
   output: {
-    // publicPath: `https://weback-module-federation-poc-host.netlify.app/`,
-    // publicPath: `http://localhost:8080/`,
+    publicPath: "https://weback-module-federation-poc-host.netlify.app/",
+    // publicPath: "http://localhost:8080/"",
     clean: true
   },
   module: {
