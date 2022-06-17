@@ -1,25 +1,11 @@
-import { eventBus } from "@core/bus/eventBus";
-import { registerNavigationItem } from "@core/routing/navigationRegistry";
-import { registerRoute } from "@core/routing/routeRegistry";
+/*
+Currently not working because of https://stackoverflow.com/questions/72638378/module-federation-display-a-blank-page-for-a-few-seconds-when-a-remote-is-unavai
+*/
 
-const registrationContext = {
-    registerRoute,
-    registerNavigationItem,
-    eventBus
-};
-
-/* webpackPrefetch: 1 */
+import { registerModule } from "./registerModule";
 
 export function registerRemotes({ onCompleted }) {
     import("remote1/register")
-        .then(module => {
-            if (!module.register) {
-                throw new Error(`Cannot find a "register" function for remote ${x}`);
-            }
-        
-            module.register(registrationContext);
-        })
-        .finally(() => {
-            onCompleted();
-        });
+        .then(module => { registerModule(module, "remote1/register") })
+        .finally(() => { onCompleted(); });
 }

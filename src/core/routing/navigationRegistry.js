@@ -2,7 +2,6 @@ const registry = [];
 
 /*
 Item:
-
 {
     to: string
     displayName: string
