@@ -11,9 +11,11 @@ My goal was to prove that:
 
 To do see, each remote expose a `register` function which is called at startup by the host application and receive a context including `registerRoute`, `registerNavigationItem` functions and an `eventBus`.
 
-A remote register dynamically his routes and menu items and become a part of the application. A remote can even choose to opt out of the host layout and provide is own for a specific route.
+A remote register dynamically his routes and menu items during the startup and become a part of the application. Pages of the remotes can then be accessed from the main navigation of the host application.
 
-To communicate with the host of the other remotes of the applications, a remote can use the `eventBus`.
+A remote even have the option to opt out of the default host layout and provide his own for a specific route.
+
+To communicate with the host or the other remotes, a remote can use the `eventBus`.
 
 A working release of this repository is available on [Netlify](https://weback-module-federation-poc-host.netlify.app/).
 
