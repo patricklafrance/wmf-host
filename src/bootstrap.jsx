@@ -7,7 +7,11 @@ import { createRoot } from "react-dom/client";
 import { registerDynamicRemotes } from "./core/mfe/registerDynamicRemotes";
 
 const Remotes = [
-    { url: "http://localhost:8081/remoteEntry.js", containerName: "remote1", moduleName: "./register" }
+    { 
+        url: process.env.NODE_ENV === "development" ? "http://localhost:8081/remoteEntry.js" : "https://webpack-module-federation-poc-remote-1.netlify.app/remoteEntry.js",
+        containerName: "remote1",
+        moduleName: "./register" 
+    }
 ]
 
 // Using "window" is only a convenience hack, in Apricot, it would be done with the initialisation state available in the Redux store.
