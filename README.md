@@ -1,30 +1,53 @@
+# wmf-host
+
+This is a POC of a micro-frontend application with [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/). This POC include an host application and a single remote application which is integrated at runtime.
+
+My goal was to prove that:
+
+- Webpack Module Federation works
+- I could create a shell application in which remote applications could be 100% standalone, meaning they don't require any specific code other than their URL to be included in the host application (no static menu links, router routes, etc...)
+- An host could be developed without having to start the remotes
+- A remote could be developed without having to integrate with the host app
+
+To do see, each remote expose a `register` function which is called at startup by the host application and receive a context including `registerRoute`, `registerNavigationItem` functions and an `eventBus`.
+
+A remote register dynamically his routes and menu items and become a part of the application. A remote can even choose to opt out of the host layout and provide is own for a specific route.
+
+To communicate with the host of the other remotes of the applications, a remote can use the `eventBus`.
+
+A working release of this repository is available on [Netlify](https://weback-module-federation-poc-host.netlify.app/).
+
+## Installation
+
+Install with `yarn install`
+
+Then start with `yarn dev`
+
+Make sure you also install and start the [remote project](https://github.com/patricklafrance/wmf-remote-1).
+
 ## Todo
-- Test in release
-- Optimize bundles, they should be < 5k
-- Eager load bundles for registration functions instead of dynamically loading them?
-- Handle fragments loading errors
-- Integration with error boundaries
-- Next JS fragment
+- Integration with React error boundaries
+- Support a Next.js remote
 
 ## Works
 - Local dev experience for a specific fragment without having to start the host app
 - Register dynamic routes
 - Lazy load components from dynamically registered routes
-- Load css styles from fragments
-- Override page layout from fragments
-- Share services between fragments
+- Load css styles from a remote
+- Override page layout from a remote
+- Share services between remotes
 - Webpack devserver hot reload
 - Orbit
 - Webpack alias
+- Deploy in production
 
 ## Remaining concerns
-- Why do I have to specified the shared dependencies in host AND fragments? What happens if the deps version diverge between the host & the fragments?
-- WMF doesn't support fast-refresh?
-- For a react app when a remote is not available, the webpack devserver will wait for the network request to timeout before calling index.js
+- Doesn't seem to support React fast-refresh.
+- When using the default remotes configuration, a blank plage is displayed until the remote script fail to load. For more info view this post on [StackOverflow](overflow.com/questions/72638378/module-federation-display-a-blank-page-for-a-few-seconds-when-a-remote-is-unavai).
 
 ## Best practices
 
-- Always keep your shared dependencies on the same versions on host and fragments
+- Always keep your shared dependencies on the same versions on host and remotes
 
 ## Gotchas
 
@@ -48,5 +71,5 @@ See: https://www.linkedin.com/pulse/uncaught-error-shared-module-available-eager
 ## Why module federation vs other MF solutions?
 
 - Available out of the box with Webpack, no custom code to write
-- Shared dependencies management handled at bundler level
-- Works with next.js
+- Shared dependencies management handled at the bundler level
+- Works with Next.js
