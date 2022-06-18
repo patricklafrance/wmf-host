@@ -74,4 +74,4 @@ See: https://www.linkedin.com/pulse/uncaught-error-shared-module-available-eager
 
 - Available out of the box with Webpack, no custom code to write
 - Shared dependencies management handled at the bundler level
-- Works with Next.js
+- Compatible with Next.js
