@@ -1,6 +1,6 @@
 # wmf-host
 
-This is a POC of a micro-frontend application with [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/). This POC include an host application and a single remote application which is integrated at runtime with module federation.
+This is a POC of a micro-frontend application with [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/). This POC include an host application and a single [remote application](https://github.com/patricklafrance/wmf-remote-1) which is integrated at runtime with module federation.
 
 The objective is to demonstrate that:
 
