@@ -13,7 +13,7 @@ Each remote expose a `register` function which is called at startup by the host 
 
 A remote register dynamically his routes and menu items during the startup phase and becomes a part of the application. Pages of the remotes can then be accessed from the main navigation of the host application.
 
-A remote even have the option to opt out of the default host layout and provide his own for a specific route.
+A remote even have the option to opt out of the default host layout and provide his own layout for a specific route.
 
 To communicate with the host or the other remotes, a remote can use the `eventBus`.
 
