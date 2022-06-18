@@ -11,7 +11,7 @@ The objective is to demonstrate that:
 
 Each remote expose a `register` function which is called at startup by the host application and receive a context including `registerRoute`, `registerNavigationItem` functions and an `eventBus`.
 
-A remote register dynamically his routes and menu items during the startup and becomes a part of the application. Pages of the remotes can then be accessed from the main navigation of the host application.
+A remote register dynamically his routes and menu items during the startup phase and becomes a part of the application. Pages of the remotes can then be accessed from the main navigation of the host application.
 
 A remote even have the option to opt out of the default host layout and provide his own for a specific route.
 
