@@ -2,7 +2,7 @@
 
 This is a POC of a micro-frontend application with [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/). This POC include an host application and a single [remote application](https://github.com/patricklafrance/wmf-remote-1) which is integrated at runtime with module federation.
 
-The objective is to demonstrate that:
+The purpose is to demonstrate that:
 
 - Webpack Module Federation works
 - I could create a shell application in which remote applications could be 100% standalone, meaning they don't require any specific code other than their URL to be included in the host application (no static menu links, router routes, etc...)
